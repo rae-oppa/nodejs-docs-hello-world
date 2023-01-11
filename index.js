@@ -9,7 +9,8 @@ const cors = require('cors')
 const crypto = require('crypto');
 const pkg = require('./package.json');
 
-console.log("gogogo");
+console.log("pipeline test");
+
 // App constants
 const port = process.env.PORT || 3000;
 const apiPrefix = '/api';
