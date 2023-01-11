@@ -10,7 +10,7 @@ const crypto = require('crypto');
 const pkg = require('./package.json');
 
 console.log("pipeline test");
-
+console.log("pipeline test");
 // App constants
 const port = process.env.PORT || 3000;
 const apiPrefix = '/api';
