@@ -30,7 +30,13 @@ pipeline {
                 }
             }
         }*/
-
+        stage('Clone') {             
+            steps {
+                echo 'Clone'
+                git branch: 'main', credentialsId: 'dsshin', url: 'https://github.com/dsshin-virnect/nodejs-docs-hello-world.git'
+            }
+         }
+        
         stage ('build docker image') {
             steps {
                 script {
