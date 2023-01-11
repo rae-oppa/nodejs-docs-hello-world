@@ -10,7 +10,6 @@ pipeline {
         REPO_URL = sh(returnStdout: true, script: 'git config --get remote.origin.url').trim()
         REPO_NAME = sh(returnStdout: true, script: 'git config --get remote.origin.url | rev | cut -f 1 -d "/" | rev | sed "s/.git//gi";sed "/^ *$/d"').toLowerCase().trim() 
         PORT = sh(returnStdout: true, script: 'cat docker/Dockerfile | egrep EXPOSE | awk \'{print $2}\'').trim()
-        BRANCH_NAME = "${env.BRANCH_NAME.toLowerCase().trim()}"
         //APP = ' '
     }
 
@@ -42,8 +41,8 @@ pipeline {
                 script {
                     //APP = docker.build("""${REPO_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}""", """--build-arg -f ./docker/Dockerfile .""")
                     docker build --tag helloworld:$BUILD_NUMBER
-                    //docker stop helloworld && docker rm helloworld
-                    //docker run --name helloworld -p 1337:1337 helloworld:$BUILD_NUMBER node /var/www/index.js &
+                    docker stop helloworld && docker rm helloworld
+                    docker run --name helloworld -p 1337:1337 helloworld:$BUILD_NUMBER node /var/www/index.js
                 }
             }
         }     
