@@ -24,26 +24,11 @@ pipeline {
         stage ('build docker image') {
             steps {
                 script {
-                    docker build --tag helloworld:$BUILD_NUMBER
-                    docker stop helloworld && docker rm helloworld
-                    docker run --name helloworld -p 1337:1337 helloworld:$BUILD_NUMBER node /var/www/index.js &
+                    docker.build("--tag helloworld:$BUILD_NUMBER")
+                    //docker stop helloworld && docker rm helloworld
+                    //docker run --name helloworld -p 1337:1337 helloworld:$BUILD_NUMBER node /var/www/index.js &
                 }
             }
         }     
-
-        /*stage ('save image to acr') {
-            when { anyOf { branch 'main'; branch 'master' } }
-            steps {
-                script {
-                    docker.withRegistry("https://$aws_ecr_address", 'ecr:ap-northeast-2:aws-ecr-credentials') {
-                        APP.push("${NEXT_VERSION}-${BRANCH_NAME}-${BUILD_NUMBER}")
-
-                        if ("${BRANCH_NAME}" == 'main') {
-                            APP.push("${NEXT_VERSION}")
-                            APP.push("latest")
-                        }
-                    }
-                }
-            }
-        }/*
+    }
 }
