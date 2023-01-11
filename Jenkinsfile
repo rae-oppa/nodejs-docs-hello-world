@@ -10,7 +10,7 @@ pipeline {
         REPO_URL = sh(returnStdout: true, script: 'git config --get remote.origin.url').trim()
         REPO_NAME = sh(returnStdout: true, script: 'git config --get remote.origin.url | rev | cut -f 1 -d "/" | rev | sed "s/.git//gi";sed "/^ *$/d"').toLowerCase().trim() 
         PORT = sh(returnStdout: true, script: 'cat docker/Dockerfile | egrep EXPOSE | awk \'{print $2}\'').trim()
-        BRANCH_NAME = "${BRANCH_NAME.toLowerCase().trim()}"
+        BRANCH_NAME = "${env.BRANCH_NAME.toLowerCase().trim()}"
         //APP = ' '
     }
 
