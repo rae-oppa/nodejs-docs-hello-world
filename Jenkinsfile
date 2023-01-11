@@ -14,21 +14,6 @@ pipeline {
     }
 
     stages {
-        /*stage ('edit package version') {
-            steps {
-                script {
-                    if ("${BRANCH_NAME}" == 'main') {
-                      sh '''
-                        sed -i "/\\"version\\":/ c\\  \\"version\\": \\"${NEXT_VERSION}\\"," package.json
-                      '''
-                    } else {
-                      sh '''
-                        sed -i "/\\"version\\":/ c\\  \\"version\\": \\"${NEXT_VERSION}-${BRANCH_NAME}-${BUILD_NUMBER}\\"," package.json
-                      '''
-                    }
-                }
-            }
-        }*/
         stage('Clone') {             
             steps {
                 echo 'Clone'
@@ -39,10 +24,9 @@ pipeline {
         stage ('build docker image') {
             steps {
                 script {
-                    //APP = docker.build("""${REPO_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}""", """--build-arg -f ./docker/Dockerfile .""")
                     docker build --tag helloworld:$BUILD_NUMBER
                     docker stop helloworld && docker rm helloworld
-                    docker run --name helloworld -p 1337:1337 helloworld:$BUILD_NUMBER node /var/www/index.js
+                    docker run --name helloworld -p 1337:1337 helloworld:$BUILD_NUMBER node /var/www/index.js &
                 }
             }
         }     
@@ -61,6 +45,5 @@ pipeline {
                     }
                 }
             }
-        }*/
-    }
+        }/*
 }
