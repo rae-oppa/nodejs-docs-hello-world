@@ -31,8 +31,8 @@ pipeline {
             }
          }*/
         
-        stage ('build docker image') {
-            steps {
+        //stage ('build docker image') {
+            //steps {
                 /*script {
                     sh '''
                     docker build --tag helloworld:$BUILD_NUMBER .
@@ -40,11 +40,11 @@ pipeline {
                     docker run --name helloworld -p 1337:1337 helloworld:$BUILD_NUMBER node /var/www/index.js &
                     '''
                 }*/
-                script {
-                    DOCKER_IMAGE = docker.build("${REPO_NAME}:${BUILD_NUMBER}", ".")
-                }
-            }
-        }
+                //script {
+                   //DOCKER_IMAGE = docker.build("${REPO_NAME}:${BUILD_NUMBER}", ".")
+                //}
+            //}
+        //}
         
         stage('deploy acr') {
             steps {
@@ -54,11 +54,11 @@ pipeline {
                             //sh 'az acr login --name $CONTAINER_REGISTRY --resource-group $RESOURCE_GROUP'
                             //sh 'az acr build --image $REPO/$IMAGE_NAME:$TAG --registry $CONTAINER_REGISTRY --file Dockerfile . '
                             sh 'az acr login --name $CONTAINER_REGISTRY'
-                            //sh 'az acr build --image helloworld:$BUILD_NUMBER --registry $CONTAINER_REGISTRY --file Dockerfile . '
+                            sh 'az acr build --image ${REPO_NAME}:$BUILD_NUMBER --registry $CONTAINER_REGISTRY --file . '
                             //sh 'docker pull mcr.microsoft.com/hello-world'
                             //sh 'docker tag mcr.microsoft.com/hello-world $ACR_LOGIN_SERVER/hello-world:v1'
                             //sh 'docker push $ACR_LOGIN_SERVER/hello-world:v1'
-                            sh 'docker push $ACR_LOGIN_SERVER/${REPO_NAME}:${BUILD_NUMBER}'
+                            //sh 'docker push $ACR_LOGIN_SERVER/${REPO_NAME}:${BUILD_NUMBER}'
                         }
             }
         }
