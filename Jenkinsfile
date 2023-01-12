@@ -50,8 +50,7 @@ pipeline {
                             //sh 'az acr login --name $CONTAINER_REGISTRY --resource-group $RESOURCE_GROUP'
                             //sh 'az acr build --image $REPO/$IMAGE_NAME:$TAG --registry $CONTAINER_REGISTRY --file Dockerfile . '
                             sh 'az acr login --name $CONTAINER_REGISTRY'
-                            sh 'az acr build --image acracrtest:v1 --registry $CONTAINER_REGISTRY
-                            //sh 'az acr build --image helloworld:$BUILD_NUMBER --registry $CONTAINER_REGISTRY --file Dockerfile . '
+                            sh 'az acr build --image helloworld:$BUILD_NUMBER --registry $CONTAINER_REGISTRY'
                         }
             }
         }
