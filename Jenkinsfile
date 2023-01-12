@@ -55,10 +55,10 @@ pipeline {
                             //sh 'az acr build --image $REPO/$IMAGE_NAME:$TAG --registry $CONTAINER_REGISTRY --file Dockerfile . '
                             sh 'az acr login --name $CONTAINER_REGISTRY'
                             //sh 'az acr build --image helloworld:$BUILD_NUMBER --registry $CONTAINER_REGISTRY --file Dockerfile . '
-                            sh 'docker pull mcr.microsoft.com/hello-world'
-                            sh 'docker tag mcr.microsoft.com/hello-world $ACR_LOGIN_SERVER/hello-world:v1'
+                            //sh 'docker pull mcr.microsoft.com/hello-world'
+                            //sh 'docker tag mcr.microsoft.com/hello-world $ACR_LOGIN_SERVER/hello-world:v1'
                             //sh 'docker push $ACR_LOGIN_SERVER/hello-world:v1'
-                            sh 'docker push $ACR_LOGIN_SERVER/$APP'
+                            sh 'docker push $ACR_LOGIN_SERVER/$DOCKER_IMAGE'
                         }
             }
         }
