@@ -10,7 +10,7 @@ pipeline {
         REPO_URL = sh(returnStdout: true, script: 'git config --get remote.origin.url').trim()
         REPO_NAME = sh(returnStdout: true, script: 'git config --get remote.origin.url | rev | cut -f 1 -d "/" | rev | sed "s/.git//gi";sed "/^ *$/d"').toLowerCase().trim() 
         //PORT = sh(returnStdout: true, script: 'cat docker/Dockerfile | egrep EXPOSE | awk \'{print $2}\'').trim()
-        APP = ' '
+        DOCKER_IMAGE = ' '
         AZURE_SUBSCRIPTION_ID='cac12505-9924-4708-99ff-243a2e777f4b'
         AZURE_TENANT_ID='8895df5f-1e4d-4cb1-8c33-9ec96c34fe15'
         AZURE_STORAGE_ACCOUNT='virnectjenkins'
@@ -41,7 +41,7 @@ pipeline {
                     '''
                 }*/
                 script {
-                    APP = docker.build("${REPO_NAME}:${BUILD_NUMBER}", "--build-arg -f Dockerfile .")
+                    DOCKER_IMAGE = docker.build("${REPO_NAME}:${BUILD_NUMBER}", ".")
                 }
             }
         }
