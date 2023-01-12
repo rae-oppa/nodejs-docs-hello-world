@@ -10,7 +10,7 @@ pipeline {
         REPO_URL = sh(returnStdout: true, script: 'git config --get remote.origin.url').trim()
         REPO_NAME = sh(returnStdout: true, script: 'git config --get remote.origin.url | rev | cut -f 1 -d "/" | rev | sed "s/.git//gi";sed "/^ *$/d"').toLowerCase().trim() 
         //PORT = sh(returnStdout: true, script: 'cat docker/Dockerfile | egrep EXPOSE | awk \'{print $2}\'').trim()
-        //APP = ' '
+        APP = ' '
         AZURE_SUBSCRIPTION_ID='cac12505-9924-4708-99ff-243a2e777f4b'
         AZURE_TENANT_ID='8895df5f-1e4d-4cb1-8c33-9ec96c34fe15'
         AZURE_STORAGE_ACCOUNT='virnectjenkins'
@@ -33,12 +33,15 @@ pipeline {
         
         stage ('build docker image') {
             steps {
-                script {
+                /*script {
                     sh '''
                     docker build --tag helloworld:$BUILD_NUMBER .
                     docker stop helloworld && docker rm helloworld
                     docker run --name helloworld -p 1337:1337 helloworld:$BUILD_NUMBER node /var/www/index.js &
                     '''
+                }*/
+                script {
+                    APP = docker.build("""${REPO_NAME}:${BUILD_NUMBER}""", """--build-arg -f Dockerfile .""")
                 }
             }
         }
@@ -54,7 +57,8 @@ pipeline {
                             //sh 'az acr build --image helloworld:$BUILD_NUMBER --registry $CONTAINER_REGISTRY --file Dockerfile . '
                             sh 'docker pull mcr.microsoft.com/hello-world'
                             sh 'docker tag mcr.microsoft.com/hello-world $ACR_LOGIN_SERVER/hello-world:v1'
-                            sh 'docker push $ACR_LOGIN_SERVER/hello-world:v1'
+                            //sh 'docker push $ACR_LOGIN_SERVER/hello-world:v1'
+                            sh 'docker push $ACR_LOGIN_SERVER/$APP'
                         }
             }
         }
