@@ -15,7 +15,7 @@ pipeline {
         AZURE_TENANT_ID='8895df5f-1e4d-4cb1-8c33-9ec96c34fe15'
         AZURE_STORAGE_ACCOUNT='virnectjenkins'
         AZURE_STORAGE_KEY='vEFF+rCoKxG2MRiYWImtLgU0vWEvipoihgHt/yS+h/DYJKDC+FH2fJnMgF7oVW5zqk/2iLzCaHfz+AStP58qkQ=='
-        CONTAINER_REGISTRY='6a0ec4d3-30cb-4a83-91c0-ae56bc0e3d26'
+        CONTAINER_REGISTRY='virnectjenkins'
         //RESOURCE_GROUP='resource group'
         //REPO="repo name"
         //IMAGE_NAME="image name"
