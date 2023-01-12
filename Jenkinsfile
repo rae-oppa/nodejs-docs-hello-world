@@ -16,6 +16,7 @@ pipeline {
         AZURE_STORAGE_ACCOUNT='virnectjenkins'
         AZURE_STORAGE_KEY='vEFF+rCoKxG2MRiYWImtLgU0vWEvipoihgHt/yS+h/DYJKDC+FH2fJnMgF7oVW5zqk/2iLzCaHfz+AStP58qkQ=='
         CONTAINER_REGISTRY='virnectjenkins'
+        ACR_LOGIN_SERVER='virnectjenkins.azurecr.io'
         //RESOURCE_GROUP='resource group'
         //REPO="repo name"
         //IMAGE_NAME="image name"
@@ -52,6 +53,7 @@ pipeline {
                             sh 'az acr login --name $CONTAINER_REGISTRY'
                             //sh 'az acr build --image helloworld:$BUILD_NUMBER --registry $CONTAINER_REGISTRY --file Dockerfile . '
                             sh 'docker pull mcr.microsoft.com/hello-world'
+                            sh 'docker push $ACR_LOGIN_SERVER/hello-world:$BUILD_NUMBER'
                         }
             }
         }
