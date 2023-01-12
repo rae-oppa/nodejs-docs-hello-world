@@ -58,7 +58,7 @@ pipeline {
                             //sh 'docker pull mcr.microsoft.com/hello-world'
                             //sh 'docker tag mcr.microsoft.com/hello-world $ACR_LOGIN_SERVER/hello-world:v1'
                             //sh 'docker push $ACR_LOGIN_SERVER/hello-world:v1'
-                            sh 'docker push $ACR_LOGIN_SERVER/$DOCKER_IMAGE'
+                            sh 'docker push $DOCKER_IMAGE'
                         }
             }
         }
