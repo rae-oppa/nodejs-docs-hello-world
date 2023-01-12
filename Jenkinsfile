@@ -41,7 +41,7 @@ pipeline {
                     '''
                 }*/
                 script {
-                    APP = docker.build("""${REPO_NAME}:${BUILD_NUMBER}""", """--build-arg -f Dockerfile .""")
+                    APP = docker.build("${REPO_NAME}:${BUILD_NUMBER}", "--build-arg -f Dockerfile .")
                 }
             }
         }
