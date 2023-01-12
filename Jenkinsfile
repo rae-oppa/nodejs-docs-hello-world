@@ -53,7 +53,7 @@ pipeline {
                             sh 'az acr login --name $CONTAINER_REGISTRY'
                             //sh 'az acr build --image helloworld:$BUILD_NUMBER --registry $CONTAINER_REGISTRY --file Dockerfile . '
                             sh 'docker pull mcr.microsoft.com/hello-world'
-                            sh 'docker push $ACR_LOGIN_SERVER/hello-world:$BUILD_NUMBER'
+                            sh 'docker push $ACR_LOGIN_SERVER/hello-world'
                         }
             }
         }
