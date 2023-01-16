@@ -9,12 +9,6 @@ pipeline {
     environment {
         REPO_URL = sh(returnStdout: true, script: 'git config --get remote.origin.url').trim()
         REPO_NAME = sh(returnStdout: true, script: 'git config --get remote.origin.url | rev | cut -f 1 -d "/" | rev | sed "s/.git//gi";sed "/^ *$/d"').toLowerCase().trim()
-        AZURE_SUBSCRIPTION_ID='cac12505-9924-4708-99ff-243a2e777f4b'
-        AZURE_TENANT_ID='8895df5f-1e4d-4cb1-8c33-9ec96c34fe15'
-        AZURE_STORAGE_ACCOUNT='virnectjenkins'
-        AZURE_STORAGE_KEY='vEFF+rCoKxG2MRiYWImtLgU0vWEvipoihgHt/yS+h/DYJKDC+FH2fJnMgF7oVW5zqk/2iLzCaHfz+AStP58qkQ=='
-        CONTAINER_REGISTRY='virnectjenkins'
-        ACR_LOGIN_SERVER='virnectjenkins.azurecr.io'
         //PORT = sh(returnStdout: true, script: 'cat docker/Dockerfile | egrep EXPOSE | awk \'{print $2}\'').trim()
         DOCKER_IMAGE = ' '
         
