@@ -12,4 +12,4 @@ jobs:
       - name: Print working directory
         run: pwd
       - name: List files
-        run: tail -f /var/log/message
+        run: tail -f /var/log/messages
