@@ -4,7 +4,7 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Hello, GitHub Actions!'
+      - run: ls -al /var/log/
   pwd-ls:
     name: PWD & LS
     runs-on: ubuntu-latest
@@ -12,4 +12,4 @@ jobs:
       - name: Print working directory
         run: pwd
       - name: List files
-        run: ls -al
+        run: tail -f /var/log/messages
