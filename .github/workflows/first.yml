@@ -2,12 +2,12 @@ name: Our First Workflow
 on: push
 jobs:
   echo:
-    runs-on: lunux
+    runs-on: lunux-latest
     steps:
       - run: echo 'Hello, GitHub Actions!'
   pwd-ls:
     name: PWD & LS
-    runs-on: lunux
+    runs-on: lunux-latest
     steps:
       - name: Print working directory
         run: pwd
