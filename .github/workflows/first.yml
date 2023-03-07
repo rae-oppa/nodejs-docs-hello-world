@@ -2,12 +2,12 @@ name: Our First Workflow
 on: push
 jobs:
   echo:
-    runs-on: centos-latest
+    runs-on: centos:7
     steps:
       - run: echo 'Hello, GitHub Actions!'
   pwd-ls:
     name: PWD & LS
-    runs-on: centos-latest
+    runs-on: centos:7
     steps:
       - name: Print working directory
         run: pwd
