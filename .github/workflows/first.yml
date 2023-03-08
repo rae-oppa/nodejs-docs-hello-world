@@ -2,12 +2,12 @@ name: Our First Workflow
 on: push
 jobs:
   echo:
-    runs-on: [self-hosted]
+    runs-on: self-hosted
     steps:
       - run: ls -al /var/log/
   pwd-ls:
     name: PWD & LS
-    runs-on: [self-hosted]
+    runs-on: self-hosted
     steps:
       - name: Print working directory
         run: pwd
