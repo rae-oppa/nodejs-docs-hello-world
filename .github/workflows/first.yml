@@ -2,7 +2,7 @@ name: Our First Workflow
 on: push
 jobs:
   echo:
-    runs-on: git-action
+    runs-on: [self-hosted, linux]
     steps:
       - run: ls -al /var/log/
   pwd-ls:
