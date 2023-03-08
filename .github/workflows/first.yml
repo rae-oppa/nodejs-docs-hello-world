@@ -4,7 +4,7 @@ jobs:
   echo:
     runs-on: self-hosted
     steps:
-      - run: ls -al /var/log/
+      - run: echo "hi"
   pwd-ls:
     name: PWD & LS
     runs-on: self-hosted
