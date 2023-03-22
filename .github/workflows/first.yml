@@ -2,14 +2,14 @@ name: Our First Workflow
 on: push
 jobs:
   echo:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - run: echo "hi"
   pwd-ls:
     name: PWD & LS
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Print working directory
-        run: pwd && la -alh
+        run: pwd && ls -alh
       - name: network interface
         run: ifconfig -a
